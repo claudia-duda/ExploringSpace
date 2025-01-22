@@ -24,7 +24,7 @@ def login (request):
 
             if usuario is not None:
                 auth.login(request, usuario)
-                messages.success(request, "Bem vindo(a)")
+                messages.success(request, f"Bem vindo(a) {nome}")
                 return redirect('index')
             else:
                 messages.error(request, "Erro ao realizar ao login")
@@ -45,6 +45,7 @@ def cadastro(request):
             senha = form["senha_inicial"].value()
 
             if User.objects.filter(username = nome).exists():
+                messages.error(request, "Usuario já cadastrado")
                 return redirect('cadastro')
 
             if senha != form["senha_confirmar"].value():
