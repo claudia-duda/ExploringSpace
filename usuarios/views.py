@@ -33,6 +33,7 @@ def login (request):
     return render(request, "usuarios/login.html", {"form" : form })
 
 def cadastro(request):
+
     form = CadastroForms()
 
     if request.method == 'POST':
@@ -62,3 +63,8 @@ def cadastro(request):
             return redirect('login')
 
     return render(request, "usuarios/cadastro.html", { "form" : form })
+
+def logout(request):
+    auth.logout(request)
+    messages.success(request, "Logout efetuado com sucesso")
+    return redirect('login')
