@@ -69,3 +69,19 @@ class CadastroForms(forms.Form):
             }
         )
     )
+
+    def clean_nome_cadastro(self):
+        nome = self.cleaned_data.get("nome_cadastro")
+
+        if nome:
+            nome = nome.strip()
+            if " " in nome:
+                raise forms.ValidationError("Não é possível inserir espaços dentro do campo nome de cadastro")
+
+    def clean_senha_confirmar(self):
+        senha_inicial = self.cleaned_data.get("senha_inicial")
+        senha_confirmar = self.cleaned_data.get("senha_confirmar")
+
+        if(senha_confirmar and senha_inicial):
+            if(senha_confirmar != senha_inicial):
+                raise forms.ValidationError("Não é possível inserir espaços dentro do campo nome de cadastro")

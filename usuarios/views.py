@@ -49,10 +49,6 @@ def cadastro(request):
                 messages.error(request, "Usuario já cadastrado")
                 return redirect('cadastro')
 
-            if senha != form["senha_confirmar"].value():
-                messages.error(request, "Senhas não são iguais")
-                return redirect('cadastro')
-
             usuario = User.objects.create_user(
                 username = nome,
                 email = email,
