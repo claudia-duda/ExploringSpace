@@ -1,7 +1,19 @@
 {% if messages %}
-    {% for message in messages %}
-        <div class="alert alert-{{ message.tags}}">
-            {{message}}
-        </div>
-    {% endfor %}
-{% endif%}
+    <div id="messages-container">
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}" onclick="this.parentElement.remove()">
+                {{ message }}
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}
+
+<script>
+    // Remover mensagens automaticamente após 5 segundos
+    setTimeout(() => {
+        const container = document.getElementById('messages-container');
+        if (container) {
+            container.remove();
+        }
+    }, 5000);
+</script>
