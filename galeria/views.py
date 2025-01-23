@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, get_object_or_404
 from galeria.models import Fotografia
 from django.contrib import messages
 
@@ -6,7 +6,7 @@ def imagem(request, foto_id):
     fotografia = get_object_or_404(Fotografia, pk=foto_id)
     return render(request, 'galeria/imagem.html', {"fotografia": fotografia})
 
-def index(request):
+def buscar(request):
     categorias  = Fotografia.OPCOES_CATEGORIA
     fotografias = Fotografia.objects.order_by("data_fotografia").filter(publicada=True)
 
@@ -20,4 +20,4 @@ def index(request):
         if categoria:
             fotografias = fotografias.filter(categoria=categoria)
 
-    return render(request, "galeria/index.html", {"cards": fotografias, "categorias" : categorias})
+    return render(request, "galeria/listagem.html", {"cards": fotografias, "categorias" : categorias})

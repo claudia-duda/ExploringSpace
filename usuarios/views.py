@@ -24,8 +24,8 @@ def login (request):
 
             if usuario is not None:
                 auth.login(request, usuario)
-                messages.success(request, f"Bem vindo(a) {nome}")
-                return redirect('index')
+                messages.success(request, f"Bem vindo(a) {nome}!")
+                return redirect('buscar')
             else:
                 messages.error(request, "Erro ao realizar ao login")
                 return redirect('login')

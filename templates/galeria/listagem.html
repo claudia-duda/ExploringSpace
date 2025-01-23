@@ -9,7 +9,7 @@
                             <p class="tags__titulo">Busque por tags:</p>
                             {% for chave, valor in categorias %}
                                 <ul class="tags__lista">
-                                    <a class="tags__tag" href="{% url 'index' %}?categoria={{ chave }}">{{ valor }}</a>
+                                    <a class="tags__tag" href="{% url 'buscar' %}?categoria={{ chave }}">{{ valor }}</a>
                                 </ul>
                             {% endfor %}
                         {% endif %}
