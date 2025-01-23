@@ -5,10 +5,10 @@ from datetime import datetime
 class Fotografia(models.Model):
 
     OPCOES_CATEGORIA = [
-        ("NEBULOSA","Nebulosa"),
-        ("ESTRELA","Estrela"),
-        ("GALÁXIA","Galáxia"),
-        ("PLANETA","Planeta"),
+        ("Nebulosa","Nebulosa"),
+        ("Estrela","Estrela"),
+        ("Galáxia","Galáxia"),
+        ("Planeta","Planeta"),
     ]
 
     nome = models.CharField(max_length=100, null=False, blank=False)

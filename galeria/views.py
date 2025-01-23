@@ -25,4 +25,4 @@ def buscar(request):
         if nome_a_buscar:
             fotografias = fotografias.filter(nome__icontains=nome_a_buscar)
 
-    return render(request, "galeria/buscar.html", {"cards": fotografias})
+    return render(request, "buscar.html", {"cards": fotografias})
