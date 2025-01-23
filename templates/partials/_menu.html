@@ -2,30 +2,33 @@
 <div class="pagina-inicial">
     <header class="cabecalho">
         <img src="{% static '/assets/logo/Logo(2).png' %}" alt="Logo Exploring Space" /> <!–  Mudar logo->
-        {% include 'partials/_alertas.html' %}
         <div class="cabecalho__busca">
             <div class="busca__fundo">
-                <form action="{% url 'buscar' %}"><!–  Melhorar visualização de busca->
+                <form action="{% url 'buscar' %}">
                     <input class="busca__input" type="text" name="buscar" placeholder="O que você procura?">
                     <button type="submit">
-                        <img class="busca__icone" src="{% static '/assets/ícones/1x/search.png' %}" alt="ícone de search">
+                        <img  src="{% static '/assets/ícones/1x/search.png' %}" alt="ícone de search">
                     </button>
                 </form>
             </div>
         </div>
+        {% if not user.is_authenticated %}
+        <a href="{% url 'login' %}"><img src="{% static '/assets/ícones/1x/login.png' %}"></a>
+        <a href="{% url 'cadastro' %}"><img src="{% static '/assets/ícones/1x/register.png' %}"></a>
+        {% else%}
+            <a href="{% url 'logout' %}"><img src="{% static '/assets/ícones/1x/logout.png' %}"></a>
+        {% endif %}
     </header>
+    {% include 'partials/_alertas.html' %}
+    
     <main class="principal">
-        <section class="menu-lateral">
-            <nav class="menu-lateral__navegacao">
-                <a href="{% url 'buscar' %}"><img src="{% static '/assets/ícones/1x/Home - ativo.png' %}"> Inicio</a>
-                {% if user.is_authenticated %}
-                    <a href="{% url 'logout' %}"><img src="{% static '/assets/ícones/1x/Mais vistas - inativo.png' %}"> Logout</a>
+        {% if user.is_authenticated %}
+            <section class="menu-lateral">
+                <nav class="menu-lateral__navegacao">
+                    <a href="{% url 'buscar' %}"><img src="{% static '/assets/ícones/1x/Home - ativo.png' %}"> Inicio</a>
                     <a href="#"><img src="{% static '/assets/ícones/1x/Mais vistas - inativo.png' %}"> Mais vistas</a>
                     <a href="#"><img src="{% static '/assets/ícones/1x/Novas - inativo.png' %}"> Novas</a>
                     <a href="#"><img src="{% static '/assets/ícones/1x/Surpreenda-me - inativo.png' %}"> Surpreenda-me</a>
-                {% else%}
-                    <a href="{% url 'login' %}"><img src="{% static '/assets/ícones/1x/Mais vistas - inativo.png' %}"> Login</a>
-                    <a href="{% url 'cadastro' %}"><img src="{% static '/assets/ícones/1x/Mais vistas - inativo.png' %}"> Registre-se</a>
-                {% endif %}
-            </nav>
-        </section>
+                </nav>
+            </section>
+        {% endif %}

@@ -142,7 +142,7 @@ table {
     margin-bottom: 1.5rem;
     position: relative;
     width: 450px;
-    background-color: #25498b;  
+    --bs-card-bg: #10386c !important;
 }
 
 .card__imagem {
@@ -153,7 +153,6 @@ table {
 .card__tag {
     background-color: #D9D9D940;
     border-radius: 8px;
-    border: 2px solid transparent;
     font-size: 1.2rem;
     left: 310px;
     margin-right: 1.5rem;
@@ -370,11 +369,12 @@ table {
 }
 
 .tags__tag {
+    color: #acc2f7;
     background-color: #D9D9D930;
     margin-right: 1.5rem;
     border-radius: 8px;
     padding: .8rem .5rem;
-    width: 100px;
+    width: 110px;
     text-align: center;
     border: 2px solid transparent;
 }
