@@ -38,8 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'galeria.apps.GaleriaConfig',
-    'usuarios.apps.UsuariosConfig',
+    'apps.galeria.apps.GaleriaConfig',
+    'apps.usuarios.apps.UsuariosConfig',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
@@ -157,8 +157,8 @@ MESSAGE_TAGS = {
 SOCIALACCOUNT_PROVIDERS = {
     'google': {
         'APP': {
-            'client_id': 'value',
-            'secret': 'value',
+            'client_id': '',
+            'secret': '',
             'key': ''
         }
     }
