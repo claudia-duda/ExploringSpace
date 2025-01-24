@@ -1,6 +1,8 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import redirect, render, get_object_or_404
+from apps.galeria.forms import FotografiaForms
 from  apps.galeria.models import Fotografia
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 
 @login_required
 def imagem(request, foto_id):
@@ -22,3 +24,26 @@ def buscar(request):
             fotografias = fotografias.filter(categoria=categoria)
 
     return render(request, "galeria/listagem.html", {"cards": fotografias, "categorias" : categorias})
+
+def nova_imagem(request):
+
+    if not request.user.is_authenticated:
+        messages.error('request' "Usuário não logado")
+        return redirect('login')
+
+    form_fotografia = FotografiaForms
+    if request.method == 'POST':
+        form = FotografiaForms(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Novo Exoplaneta foi cadastrado com sucesso!")
+    return render(request, 'galeria/nova-imagem.html', {'form': form_fotografia})
+
+
+def editar_imagem(request):
+    messages.success(request, "To be created!")
+    return redirect('buscar')
+
+def deletar_imagem(request):
+    messages.success(request, "To be created!")
+    return redirect('buscar')
