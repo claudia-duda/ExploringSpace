@@ -19,7 +19,16 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+#Custom auth definitions
+SITE_ID = 1
 
+LOGIN_REDIRECT_URL = '/'
+
+LOGOUT_REDIRECT_URL = '/'
+
+SOCIALACCOUNT_LOGIN_ON_GET = True
+
+ACCOUNT_LOGOUT_ON_GET = True
 # Application definition
 
 INSTALLED_APPS = [
@@ -31,7 +40,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'galeria.apps.GaleriaConfig',
     'usuarios.apps.UsuariosConfig',
-
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
+    'django.contrib.sites',
 ]
 
 MIDDLEWARE = [
@@ -42,6 +55,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'allauth.account.middleware.AccountMiddleware',
 ]
 
 ROOT_URLCONF = 'setup.urls'
@@ -64,6 +78,10 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'setup.wsgi.application'
 
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+]
 
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
@@ -134,4 +152,14 @@ MESSAGE_TAGS = {
     messages.ERROR: 'danger',
     messages.SUCCESS: 'success',
     50: 'critical',
+}
+
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'APP': {
+            'client_id': 'value',
+            'secret': 'value',
+            'key': ''
+        }
+    }
 }

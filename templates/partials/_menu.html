@@ -1,7 +1,7 @@
 {% load static %}
 <div class="pagina-inicial">
     <header class="cabecalho">
-        <img src="{% static '/assets/logo/Logo(2).png' %}" alt="Logo Exploring Space" /> <!–  Mudar logo->
+        <a href="{% url 'buscar' %}"><img src="{% static '/assets/logo/Logo(2).png' %}" alt="Logo Exploring Space" /></a>
         <div class="cabecalho__busca">
             <div class="busca__fundo">
                 <form action="{% url 'buscar' %}">

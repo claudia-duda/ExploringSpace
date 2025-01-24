@@ -1,7 +1,8 @@
 from django.shortcuts import render, get_object_or_404
 from galeria.models import Fotografia
-from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
+@login_required
 def imagem(request, foto_id):
     fotografia = get_object_or_404(Fotografia, pk=foto_id)
     return render(request, 'galeria/imagem.html', {"fotografia": fotografia})
