@@ -157,8 +157,8 @@ MESSAGE_TAGS = {
 SOCIALACCOUNT_PROVIDERS = {
     'google': {
         'APP': {
-            'client_id': '',
-            'secret': '',
+            'client_id': str(os.getenv('GOOGLE_AUTH_CLIENT_ID')),
+            'secret': str(os.getenv('GOOGLE_AUTH_SECRET')),
             'key': ''
         }
     }

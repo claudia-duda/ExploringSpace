@@ -40,10 +40,29 @@ def nova_imagem(request):
     return render(request, 'galeria/nova-imagem.html', {'form': form_fotografia})
 
 
-def editar_imagem(request):
-    messages.success(request, "To be created!")
-    return redirect('buscar')
+def editar_imagem(request, foto_id):
+    if not request.user.is_authenticated:
+        messages.error('request' "Usuário não logado")
+        return redirect('login')
 
-def deletar_imagem(request):
-    messages.success(request, "To be created!")
+    fotografia = Fotografia.objects.get(id=foto_id)
+    form = FotografiaForms(instance = fotografia)
+
+    if request.method == 'POST':
+        form = FotografiaForms(request.POST, request.FILES, instance = fotografia)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Edição realizada com sucesso!")
+            return redirect('buscar')
+
+    return render(request, 'galeria/editar-imagem.html', {'form' : form, 'foto_id' : foto_id})
+
+def deletar_imagem(request, foto_id):
+    if not request.user.is_authenticated:
+        messages.error('request' "Usuário não logado")
+        return redirect('login')
+
+    fotografia = Fotografia.objects.get(id=foto_id)
+    fotografia.delete()
+    messages.success(request, "Imagem deletada com sucesso!")
     return redirect('buscar')
