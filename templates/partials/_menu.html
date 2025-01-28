@@ -5,8 +5,8 @@
         <div class="cabecalho__busca">
             <div class="busca__fundo">
                 <form action="{% url 'buscar' %}">
-                    <input class="busca__input" type="text" name="buscar" placeholder="O que você procura?">
-                    <button type="submit">
+                    <input class="busca__input" type="text" name="buscar" placeholder="What are ou looking for?">
+                    <button type="submit" style="background: transparent; border: none;">
                         <img  src="{% static '/assets/ícones/1x/search.png' %}" alt="ícone de search">
                     </button>
                 </form>
@@ -25,10 +25,10 @@
         {% if user.is_authenticated %}
             <section class="menu-lateral">
                 <nav class="menu-lateral__navegacao">
-                    <a href="{% url 'buscar' %}"><img src="{% static '/assets/ícones/1x/Home - ativo.png' %}"> Inicio</a>
-                    <a href="#"><img src="{% static '/assets/ícones/1x/Mais vistas - inativo.png' %}"> Mais vistas</a>
-                    <a href="{% url 'nova-imagem' %}"><img src="{% static '/assets/ícones/1x/Novas - inativo.png' %}"> Contribuir</a>
-                    <a href="#"><img src="{% static '/assets/ícones/1x/Surpreenda-me - inativo.png' %}"> Surpreenda-me</a>
+                    <a href="{% url 'buscar' %}"><img src="{% static '/assets/ícones/1x/Home - ativo.png' %}"> Start</a>
+                    <a href="#"><img src="{% static '/assets/ícones/1x/Mais vistas - inativo.png' %}"> Most viewed</a>
+                    <a href="{% url 'nova-imagem' %}"><img src="{% static '/assets/ícones/1x/Novas - inativo.png' %}"> Contribute</a>
+                    <a href="#"><img src="{% static '/assets/ícones/1x/Surpreenda-me - inativo.png' %}"> Surprise me</a>
                 </nav>
             </section>
         {% endif %}

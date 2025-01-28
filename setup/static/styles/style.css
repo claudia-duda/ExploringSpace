@@ -160,7 +160,6 @@ table {
     position: absolute;
     text-align: center;
     top: 20px;
-    width: 100px;
 }
 
 .card__info {
@@ -374,7 +373,6 @@ table {
     margin-right: 1.5rem;
     border-radius: 8px;
     padding: .8rem .5rem;
-    width: 110px;
     text-align: center;
     border: 2px solid transparent;
 }

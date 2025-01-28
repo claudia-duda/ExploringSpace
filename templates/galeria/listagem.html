@@ -6,7 +6,7 @@
                 {% if user.is_authenticated%}
                     <section class="tags">
                         {% if categorias %}
-                            <p class="tags__titulo">Busque por tags:</p>
+                            <p class="tags__titulo">Search by tags:</p>
                             {% for chave, valor in categorias %}
                                 <ul class="tags__lista">
                                     <a class="tags__tag" href="{% url 'buscar' %}?categoria={{ chave }}">{{ valor }}</a>
@@ -16,7 +16,7 @@
                     </section>
                     <section class="galeria">
                         <div class="cards">
-                            <h2 class="cards__titulo">Navegue pela galeria</h2>
+                            <h2 class="cards__titulo">Browse the gallery</h2>
                             <ul class="cards__lista">
                                 {% if cards %}
                                     {% for fotografia in cards %}
