@@ -4,6 +4,8 @@ from  apps.galeria.models import Fotografia
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
+from apps.galeria.serializers import FotografiaSerializer
+
 @login_required
 def imagem(request, foto_id):
     fotografia = get_object_or_404(Fotografia, pk=foto_id)
@@ -66,3 +68,11 @@ def deletar_imagem(request, foto_id):
     fotografia.delete()
     messages.success(request, "Imagem deletada com sucesso!")
     return redirect('buscar')
+
+
+from rest_framework import viewsets
+
+# Using ModelViewSet
+class FotografiaView(viewsets.ModelViewSet):
+    queryset = Fotografia.objects.all()
+    serializer_class = FotografiaSerializer
