@@ -73,6 +73,6 @@ def deletar_imagem(request, foto_id):
 from rest_framework import viewsets
 
 # Using ModelViewSet
-class FotografiaView(viewsets.ModelViewSet):
+class FotografiaViewSet(viewsets.ModelViewSet):
     queryset = Fotografia.objects.all()
     serializer_class = FotografiaSerializer
