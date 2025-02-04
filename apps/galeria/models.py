@@ -20,7 +20,7 @@ class Fotografia(models.Model):
     data_fotografia = models.DateTimeField(default=datetime.now, blank=False)
     usuario = models.ForeignKey(
         to = User,
-        on_delete = models.SET_NULL,
+        on_delete = models.CASCADE,
         null = True,
         blank = False,
         related_name = "user"

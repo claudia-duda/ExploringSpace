@@ -4,7 +4,7 @@ from  apps.galeria.models import Fotografia
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
-from apps.galeria.serializers import FotografiaSerializer
+from apps.galeria.serializers import FotografiaSerializer, ListaFotografiasPorUsuarioSerializer
 
 @login_required
 def imagem(request, foto_id):
@@ -71,8 +71,17 @@ def deletar_imagem(request, foto_id):
 
 
 from rest_framework import viewsets
+from rest_framework import viewsets, generics
 
 # Using ModelViewSet
 class FotografiaViewSet(viewsets.ModelViewSet):
     queryset = Fotografia.objects.all()
     serializer_class = FotografiaSerializer
+
+class ListaFotografiaPorUsuario(generics.ListAPIView):
+
+    def get_queryset(self):
+        queryset = Fotografia.objects.filter(usuario_id=self.kwargs['pk'])
+        return queryset
+
+    serializer_class = ListaFotografiasPorUsuarioSerializer
