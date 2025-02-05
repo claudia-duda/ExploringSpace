@@ -15,7 +15,7 @@ class FotografiaForms(forms.ModelForm):
             'descricao': forms.Textarea(attrs={'class':'form-control'}),
             'foto': forms.FileInput(attrs={'class':'form-control'}),
             'data_fotografia': forms.DateInput(
-                format = '%d/%m/%Y',
+                format = '%Y-%m-%d',
                 attrs={
                     'type':'date',
                     'class':'form-control'
