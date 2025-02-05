@@ -69,17 +69,16 @@ def deletar_imagem(request, foto_id):
     messages.success(request, "Imagem deletada com sucesso!")
     return redirect('buscar')
 
-
+# Using ModelViewSet
 from rest_framework import viewsets
 from rest_framework import viewsets, generics
+from rest_framework.permissions import IsAdminUser
 
-# Using ModelViewSet
 class FotografiaViewSet(viewsets.ModelViewSet):
     queryset = Fotografia.objects.all()
     serializer_class = FotografiaSerializer
 
 class ListaFotografiaPorUsuario(generics.ListAPIView):
-
     def get_queryset(self):
         queryset = Fotografia.objects.filter(usuario_id=self.kwargs['pk'])
         return queryset
