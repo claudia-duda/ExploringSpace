@@ -73,10 +73,17 @@ def deletar_imagem(request, foto_id):
 from rest_framework import viewsets
 from rest_framework import viewsets, generics
 from rest_framework.permissions import IsAdminUser
+from rest_framework import viewsets, generics, filters
+from django_filters.rest_framework import DjangoFilterBackend
 
 class FotografiaViewSet(viewsets.ModelViewSet):
     queryset = Fotografia.objects.all()
     serializer_class = FotografiaSerializer
+    filter_backends = [filters.OrderingFilter]
+    ordering_fields = ['nome']
+
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['nome', 'categoria']
 
 class ListaFotografiaPorUsuario(generics.ListAPIView):
     def get_queryset(self):
