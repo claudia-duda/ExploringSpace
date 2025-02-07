@@ -4,7 +4,7 @@ from  apps.galeria.models import Fotografia
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
-from apps.galeria.serializers import FotografiaSerializer, ListaFotografiasPorUsuarioSerializer
+from apps.galeria.serializers import FotografiaSerializer, FotografiaSerializerV2, ListaFotografiasPorUsuarioSerializer
 
 @login_required
 def imagem(request, foto_id):
@@ -78,12 +78,16 @@ from django_filters.rest_framework import DjangoFilterBackend
 
 class FotografiaViewSet(viewsets.ModelViewSet):
     queryset = Fotografia.objects.all()
-    serializer_class = FotografiaSerializer
     filter_backends = [filters.OrderingFilter]
     ordering_fields = ['nome']
 
-    filter_backends = [filters.SearchFilter]
+    filter_backends = [DjangoFilterBackend, filters.SearchFilter]
     search_fields = ['nome', 'categoria']
+    def get_serializer_class(self):
+        if self.request.version == 'v2':
+            return FotografiaSerializerV2
+        return FotografiaSerializer
+
 
 class ListaFotografiaPorUsuario(generics.ListAPIView):
     def get_queryset(self):

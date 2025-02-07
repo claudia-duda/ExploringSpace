@@ -12,6 +12,16 @@ class FotografiaSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError({'legenda':'A legenda precisa ter mais de 3 caracteres'})
         return dados['legenda']
 
+#Versioning
+class FotografiaSerializerV2(serializers.ModelSerializer):
+    class Meta:
+        model = Fotografia
+        fields = ['id', 'nome', 'categoria']
+
+    def validate(self,dados):
+        if legenda_invalida(dados['legenda']):
+            raise serializers.ValidationError({'legenda':'A legenda precisa ter mais de 3 caracteres'})
+        return dados['legenda']
 
 class ListaFotografiasPorUsuarioSerializer(serializers.ModelSerializer):
     usuario = serializers.ReadOnlyField(source = 'usuario.username')
